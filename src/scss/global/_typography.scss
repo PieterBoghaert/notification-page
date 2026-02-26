@@ -1,0 +1,61 @@
+@use "../util" as *;
+
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;800&display=swap");
+
+@layer typography {
+  :root {
+    /* Font families */
+    --font-primary: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+
+    /* Font sizes - fluid typography */
+    --fs-14: calc(14 / 16 * 1rem);
+    --fs-16: calc(16 / 16 * 1rem);
+    --fs-20: calc(20 / 16 * 1rem);
+    --fs-24: calc(24 / 16 * 1rem);
+    --fs-32: calc(32 / 16 * 1rem);
+
+    --fs-main: clamp(var(--fs-14), 1rem + 0.25vw, var(--fs-16));
+    --fs-h1: clamp(var(--fs-20), 1rem + 1vw, var(--fs-24));
+
+    /* Font weights */
+    --fw-medium: 500;
+    --fw-semibold: 600;
+    --fw-bold: 700;
+    --fw-extrabold: 800;
+
+    /* Line heights */
+    --lh-tight: 1.2;
+    --lh-normal: 1.5;
+  }
+
+  body {
+    font-family: var(--font-primary);
+    font-size: var(--fs-main);
+    line-height: var(--lh-normal);
+    font-weight: var(--fw-medium);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: var(--fw-bold);
+    line-height: var(--lh-tight);
+    font-family: var(--font-primary);
+  }
+
+  h1 {
+    font-size: var(--fs-h1);
+  }
+
+  h3,
+  .h3 {
+    font-size: var(--fs-main);
+  }
+
+  strong {
+    font-weight: var(--fw-bold);
+  }
+}

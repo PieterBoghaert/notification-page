@@ -1,0 +1,20 @@
+@use "../util" as *;
+
+@layer colors {
+  :root {
+    --c-red-500: oklch(66% 0.2 22);
+
+    --c-white: oklch(100% 0 0);
+    --c-navy-50: oklch(98% 0.01 254);
+    --c-navy-100: oklch(90% 0.03 254);
+    --c-navy-950: oklch(14% 0.02 254);
+    --c-blue-100: oklch(94% 0.05 254);
+    --c-blue-950: oklch(30% 0.1 254);
+    --c-gray-500: oklch(63% 0.02 254);
+    --c-gray-600: oklch(42% 0.02 254);
+
+    --c-shadow-blue: oklch(from var(--c-blue-950) l c h / 0.05);
+    --c-bg-primary: var(--c-navy-50);
+    --c-text-primary: var(--c-gray-600);
+  }
+}
