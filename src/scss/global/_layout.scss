@@ -138,18 +138,14 @@
     }
 
     &__title {
-      //display: flex;
-      flex-wrap: wrap;
-      gap: var(--spacing-100);
-      position: relative;
       --bullet-size: calc(8 / 16 * 1rem);
+
       &::after {
         content: "";
-        position: absolute;
+        display: inline-block;
         inline-size: var(--bullet-size);
         block-size: var(--bullet-size);
-        top: var(--bullet-size);
-        right: calc((var(--spacing-100) * -1) - var(--bullet-size));
+        margin-inline-start: var(--spacing-100);
         border-radius: var(--br-full);
         background-color: var(--c-red-500);
         opacity: 0;
