@@ -18,6 +18,7 @@
     --spacing-1200: calc(76 / 16 * 1rem);
 
     --br-5: calc(5 / 16 * 1rem);
+    --br-6: calc(6 / 16 * 1rem);
     --br-7: calc(7 / 16 * 1rem);
     --br-8: calc(8 / 16 * 1rem);
     --br-15: calc(15 / 16 * 1rem);
@@ -55,6 +56,21 @@
   .notifications-page {
     display: grid;
     place-content: center;
+
+    &__title {
+      display: flex;
+      gap: var(--spacing-200);
+    }
+
+    &__count {
+      background-color: var(--c-blue-950);
+      padding-inline: var(--spacing-100);
+      display: inline-flex;
+      align-items: center;
+      color: var(--c-white);
+      border-radius: var(--br-6);
+      font-size: var(--fs-16);
+    }
 
     &__header {
       display: flex;
