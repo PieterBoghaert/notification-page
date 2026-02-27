@@ -154,13 +154,11 @@
 
           <div class="notifications-list__body">
             <p class="notifications-list__title">
-              <a class="notifications-list__link" href={profileHref(notification.id)}>
                 <strong>{notification.name}</strong>
-              </a>
               {notification.action}
               {#if notification.target}
                 <a class="notifications-list__link notifications-list__link--target" href={targetHref(notification)}>
-                  <strong>{notification.target}</strong>
+                  {notification.target}
                 </a>
               {/if}
             </p>

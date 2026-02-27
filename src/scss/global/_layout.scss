@@ -193,7 +193,7 @@
       }
 
       strong:first-of-type {
-        color: var(--c-blue-950);
+        color: var(--c-navy-950);
       }
     }
 
@@ -212,7 +212,8 @@
       }
 
       &--target {
-        color: var(--c-gray-500);
+        font-weight: var(--fw-bold);
+        color: var(--c-blue-950);
       }
     }
 
