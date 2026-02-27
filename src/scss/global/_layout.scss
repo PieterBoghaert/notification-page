@@ -15,6 +15,7 @@
     --spacing-200: calc(16 / 16 * 1rem);
     --spacing-300: calc(24 / 16 * 1rem);
     --spacing-400: calc(32 / 16 * 1rem);
+    --spacing-500: calc(40 / 16 * 1rem);
     --spacing-1200: calc(76 / 16 * 1rem);
 
     --br-5: calc(5 / 16 * 1rem);
@@ -25,6 +26,7 @@
     --br-full: 9999px;
 
     color-scheme: light;
+    interpolate-size: allow-keywords;
   }
 
   @include reduced-motion {
@@ -40,12 +42,9 @@
 }
 
 @layer layout {
-  :root {
-  }
-
   ::selection {
-    // background-color: var(--c-neutral-900);
-    // color: var(--c-white);
+    background-color: var(--c-blue-950);
+    color: var(--c-white);
   }
 
   body {
@@ -83,12 +82,18 @@
       background-color: transparent;
       border: none;
       cursor: pointer;
+
+      &:focus-visible {
+        outline: 2px solid var(--c-blue-950);
+        outline-offset: 2px;
+        border-radius: var(--br-5);
+      }
     }
 
     &__content {
       background-color: var(--c-white);
-      padding: var(--spacing-300) var(--spacing-400);
-      margin-block: var(--spacing-1200);
+      padding: var(--spacing-300) var(--spacing-200);
+      margin-block: var(--spacing-300);
       display: flex;
       flex-direction: column;
       gap: var(--spacing-400);
@@ -98,6 +103,8 @@
         margin-inline: auto;
         box-shadow: 0 20px 60px 0 var(--c-shadow-blue);
         border-radius: var(--br-15);
+        margin-block: var(--spacing-1200);
+        padding-inline: var(--spacing-400);
       }
     }
   }
@@ -105,7 +112,7 @@
   .notifications-list {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-200);
+    gap: var(--spacing-100);
 
     &__card {
       padding: var(--spacing-300) var(--spacing-200);
@@ -113,12 +120,35 @@
       display: flex;
       gap: var(--spacing-200);
       background-color: transparent;
-      transition: background-color var(--transition-base);
+      transition:
+        background-color var(--transition-base),
+        margin-block-start var(--transition-base);
+      transition-behavior: allow-discrete;
 
       &.active {
         background-color: var(--c-navy-50);
         .notifications-list__title::after {
           opacity: 1;
+        }
+      }
+
+      & + & {
+        margin-block-start: calc(var(--spacing-500) - var(--spacing-100));
+      }
+
+      &.active + &.active {
+        margin-block-start: 0;
+      }
+
+      &.active + &:not(.active) {
+        margin-block-start: calc(var(--spacing-400) - var(--spacing-100));
+      }
+
+      &:hover {
+        .notifications-list__visual {
+          img {
+            transform: scale(1.1);
+          }
         }
       }
     }
@@ -132,8 +162,18 @@
     }
 
     &__visual {
-      img {
-        min-inline-size: 39px;
+      a {
+        border-radius: var(--br-full);
+
+        &:focus-visible {
+          outline: 2px solid var(--c-blue-950);
+          outline-offset: 2px;
+        }
+
+        img {
+          min-inline-size: 39px;
+          transition: transform var(--transition-base);
+        }
       }
     }
 
@@ -150,6 +190,29 @@
         background-color: var(--c-red-500);
         opacity: 0;
         transition: opacity var(--transition-base);
+      }
+
+      strong:first-of-type {
+        color: var(--c-blue-950);
+      }
+    }
+
+    &__link {
+      font-weight: var(--fw-bold);
+      color: var(--c-blue-950);
+
+      &:hover {
+        color: var(--c-gray-600);
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--c-blue-950);
+        outline-offset: 2px;
+        border-radius: var(--br-5);
+      }
+
+      &--target {
+        color: var(--c-gray-500);
       }
     }
 
@@ -168,6 +231,32 @@
       border: 1px solid var(--c-navy-100);
       border-radius: var(--br-5);
       background-color: var(--c-white);
+      transition:
+        background-color var(--transition-base),
+        border-color var(--transition-base);
+      cursor: pointer;
+
+      &:hover {
+        border-color: var(--c-navy-100);
+        background-color: var(--c-navy-100);
+      }
+    }
+
+    &__excerpt-link {
+      &:focus-visible {
+        outline: 2px solid var(--c-blue-950);
+        outline-offset: 2px;
+        border-radius: var(--br-5);
+      }
+    }
+
+    &__preview {
+      border-radius: var(--br-7);
+    }
+
+    a:focus-visible .notifications-list__preview {
+      outline: 2px solid var(--c-blue-950);
+      outline-offset: 2px;
     }
   }
 }

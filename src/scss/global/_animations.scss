@@ -1,0 +1,96 @@
+@layer global {
+  :root {
+    --ease-in-3: cubic-bezier(0.7, 0, 1, 1);
+    --ease-in-5: cubic-bezier(1, 0, 1, 1);
+    --ease-pop: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .notifications-list__card.active {
+      animation: active-pop-in 420ms var(--ease-pop) both;
+      transform-origin: center;
+
+      @supports (animation-delay: calc(sibling-index() * 40ms)) {
+        animation-delay: calc(sibling-index() * 60ms);
+      }
+
+      @supports not (animation-delay: calc(sibling-index() * 60ms)) {
+        &:nth-child(2) {
+          animation-delay: 60ms;
+        }
+        &:nth-child(3) {
+          animation-delay: 120ms;
+        }
+      }
+    }
+
+    .notifications-list__card:not(.active) {
+      @supports (animation-timeline: view()) {
+        animation:
+          fade-in var(--ease-in-3) both,
+          scale-down var(--ease-in-5) reverse both;
+        animation-timeline: view();
+        animation-range: 0 15%;
+        transform-origin: top center;
+      }
+    }
+  }
+
+  @supports (view-transition-name: notifications-count) {
+    ::view-transition-old(notifications-count),
+    ::view-transition-new(notifications-count) {
+      animation-duration: 220ms;
+      animation-timing-function: var(--ease-pop);
+    }
+
+    ::view-transition-old(notifications-count) {
+      animation-name: count-fade-out;
+    }
+
+    ::view-transition-new(notifications-count) {
+      animation-name: count-pop-in;
+    }
+  }
+
+  @keyframes active-pop-in {
+    0% {
+      opacity: 0;
+      transform: scale(0.97);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes scale-down {
+    100% {
+      transform: scale(0.75);
+    }
+  }
+
+  @keyframes count-fade-out {
+    to {
+      opacity: 0;
+      transform: scale(0.34);
+    }
+  }
+
+  @keyframes count-pop-in {
+    from {
+      opacity: 0;
+      transform: scale(0.28);
+    }
+
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}
